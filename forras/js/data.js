@@ -1,4 +1,4 @@
-const fruits = [
+[
     {
         id: 1, 
         name: "Banán",

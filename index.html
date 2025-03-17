@@ -6,12 +6,13 @@
     <title>Gyümölcsök</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="forras/style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="forras/js/script.js"></script>
 </head>
-<body>
+<body ng-app="gyumolcsApp" ng-controller="gyumolcsController">
 
+  <!-- <pre>{{gyumolcsok}}</pre> -->
     <!-- header -->
-
     <header class="container-fluid">
         <div class="row">
             <div id="gyumolcsContainer" class="col-12">
@@ -44,7 +45,7 @@
       </nav>
 
       <!-- leiras -->
-      <section id="#fogalmak">
+      <section id="leiras">
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -123,49 +124,105 @@
       <!-- tápérték -->
       <section id="tapertek" style="margin-top: 10px;">
         <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Tápérték- és kalóriatáblázat</h2>
+                    <table class="table table-striped" id="tapertekTable">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Gyümölcs neve</th>
+                                <th scope="col">Kalória</th>
+                                <th scope="col">Zsír</th>
+                                <th scope="col">Szénhidrát</th>
+                                <th scope="col">Fehérje</th>
+                                <th scope="col">Rost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Banán</td>
+                                <td>89 kcal</td>
+                                <td class="text-center">0.33 g</td>
+                                <td class="text-center">22.8 g</td>
+                                <td class="text-center">1.09 g</td>
+                                <td class="text-center">2.6 g</td>
+                            </tr>
+                            <tr>
+                                <td>Alma</td>
+                                <td>52 kcal</td>
+                                <td class="text-center">0.17 g</td>
+                                <td class="text-center">13.8 g</td>
+                                <td class="text-center">0.26 g</td>
+                                <td class="text-center">1.3 g</td>
+                            </tr>
+                            <tr>
+                                <td>Narancs</td>
+                                <td>47 kcal</td>
+                                <td class="text-center">0.12 g</td>
+                                <td class="text-center">11.8 g</td>
+                                <td class="text-center">0.94 g</td>
+                                <td class="text-center">2 g</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+      <!-- kalkulátor -->
+      <section id="kalkulator" style="margin-top: 10px;">
+        <div class="container">
           <div class="row">
             <div class="col-12">
-              <h2>Tápérték- és kalóriatáblázat</h2>
-              <table class="table table-striped">
-                <thead>
-                  <tr class="table-dark">
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h2>Kalkulátor</h2>
+              <form>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Gyümölcs neve</label>
+                  <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Válasszon gyümölcsöt!</option>
+                    <option ng-repeat="gyumolcs in gyumolcsok">{{gyumolcs.name}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="mennyiseg">Mennyiség</label>
+                  <input type="number" class="form-control" id="mennyiseg" value="1" min="1">
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-dark">Számítás</button>
+                <button type="submit" class="btn btn-light">Visszaállítás</button>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- kalkulátor -->
-      <section id="kalkulator">
+      <!-- dobozok -->
+      <section id="dobozok" style="margin-top: 10px;">
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <h2>Kalkulátor</h2>
+              <div class="color-boxes">
+                <div class="color-box" style="background-color: rgb(2, 138, 158);">
+                  <h3>Zsír</h3>
+                </div>
+                <div class="color-box" style="background-color: rgb(9, 81, 92);">
+                  <h3>Rost</h3>
+                </div>
+                <div class="color-box" style="background-color: rgb(73, 126, 23);">
+                  <h3>Szénhidrát</h3>
+                </div>
+                <div class="color-box" style="background-color: rgb(31, 83, 143);">
+                  <h3>Fehérje</h3>
+                </div>
+                <div class="color-box" style="background-color: rgb(151, 23, 23);">
+                  <h3>Kalória</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -176,5 +233,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="forras/js/script.js"></script>
+    <script>
+var app = angular.module('gyumolcsApp', []);
+app.controller('gyumolcsController', function($scope, $http) {
+  $http.get("forras/js/data.js")
+  .then(function(response) {
+    $scope.gyumolcsok = response.data;
+  });
+});
+    </script>
 </body>
 </html>

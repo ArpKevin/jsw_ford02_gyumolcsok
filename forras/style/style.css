@@ -63,7 +63,7 @@ nav{
 
 details{
     margin-top: 10px;
-    border: 1px dotted rgb(2 138 158);
+    border: 1px dashed rgb(2 138 158);
 }
 
 details summary {
@@ -79,9 +79,38 @@ details p {
     padding: 10px;
 }
 
+#tapertekTable{
+    margin: 0 auto;
+    width: 75%;
+}
 
 @media only screen and (max-width: 769px) {
     #kiwi{
         display: none;
         }
     }
+
+@media only screen and (min-width: 770px) {
+    #kalkulator{
+        margin: 0 auto;
+        width: 750px;
+    }
+}
+
+.color-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.color-box {
+    display: flex;
+    flex: 1;
+    margin: 0 10px;
+    border-radius: 10px;
+    border: 3px solid white;
+    padding: 5px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
